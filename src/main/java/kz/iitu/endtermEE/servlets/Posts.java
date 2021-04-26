@@ -43,11 +43,9 @@ public class Posts extends HttpServlet {
             HttpSession session=request.getSession();
             PostDao postDao = new PostDao();
             String id = postDao.createPost(post, request.getParameter("username"));
-            System.out.println(id);
             if(!id.equals("!SUCCESS"))
             {
-                request.setAttribute("head",post.getHead());
-                request.setAttribute("info",post.getInfo());
+                request.setAttribute("post",post);
                 request.getRequestDispatcher("/PostInfo.jsp").forward(request,response);
             }
             else

@@ -1,4 +1,5 @@
 kz\iitu\endtermEE\servlets\DeletePost.class
+kz\iitu\endtermEE\servlets\Update.class
 kz\iitu\endtermEE\dao\DBConnection.class
 kz\iitu\endtermEE\dao\PostDao.class
 kz\iitu\endtermEE\servlets\Logout.class

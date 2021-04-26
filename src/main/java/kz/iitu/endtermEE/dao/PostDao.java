@@ -87,19 +87,13 @@ public class PostDao {
     public Post update(Post post) throws SQLException {
         Connection con = DBConnection.createConnection();
         String query = "update post set head=?,info=? where id =?";
-        System.out.println(query);
         PreparedStatement preparedStatement = con.prepareStatement(query);
         preparedStatement.setInt(3,post.getId());
         preparedStatement.setString(1,post.getHead());
         preparedStatement.setString(2,post.getInfo());
-        ResultSet rs = preparedStatement.executeQuery();
-        if (rs.next()) {
-            post.setId(rs.getInt("id"));
-            post.setHead(rs.getString("head"));
-            post.setInfo(rs.getString("info"));
-            post.setUser_id(rs.getInt("user_id"));
-        }
-        return post;
+        System.out.println(query);
+        preparedStatement.executeUpdate();
+        return getById(post.getId());
     }
 }
 

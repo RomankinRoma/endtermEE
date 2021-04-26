@@ -31,6 +31,28 @@ public class DeletePost extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String head = request.getParameter("head");
+        String info = request.getParameter("info");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Post post = new Post();
+        post.setInfo(info);
+        post.setHead(head);
+        post.setId(id);
+        try {
+            PostDao postDao = new PostDao();
+            Post p = postDao.update(post);
+            if(p!=null)
+            {
+                request.setAttribute("post",post);
+                request.getRequestDispatcher("/PostInfo.jsp").forward(request,response);
+            }
+            else
+            {
+                request.setAttribute("errMessage", id);
+                request.getRequestDispatcher("/Posts.jsp").forward(request, response);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

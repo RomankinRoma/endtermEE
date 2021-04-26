@@ -25,7 +25,7 @@
         User user=userDao.getByUsername(String.valueOf(session.getAttribute("username")));
         if (post.getUser_id()==user.getId()){
         session.setAttribute("post",post);%>
-<button>Edit</button>
+<a href="/EditPost.jsp"><button>Edit</button></a>
 <a href="/delete/post">Delete</a>
 <%}%>
 <%}%>
