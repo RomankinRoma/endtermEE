@@ -73,6 +73,23 @@ public class PostDao {
         }
         return posts;
     }
+    public List<Post> getAllByUser(int id) throws SQLException {
+        Connection con = DBConnection.createConnection();
+        String query = "select * from post where post.user_id="+id;
+        System.out.println(query);
+        PreparedStatement preparedStatement = con.prepareStatement(query);
+
+        ResultSet rs = preparedStatement.executeQuery();
+        List<Post> posts = new ArrayList<>();
+        while (rs.next()) {
+            Post post = new Post();
+            post.setId(rs.getInt("id"));
+            post.setHead(rs.getString("head"));
+            post.setInfo(rs.getString("info"));
+            posts.add(post);
+        }
+        return posts;
+    }
 
     public boolean delete(int id) throws SQLException {
         Connection con = DBConnection.createConnection();

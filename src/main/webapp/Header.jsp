@@ -29,6 +29,9 @@
                <%}%>
             <%if (session.getAttribute("username")!=null){%>
             <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link " href="/Profile.jsp">Profile</a>
+            </li>
                 <form action="Logout" method="post">
                     <input class="nav-link" style="border:none" type="submit" value="Log out"/>
                 </form>
