@@ -8,6 +8,21 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<html>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 10px;
+        text-align: left;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .grid-container > div {
+        padding: 20px;
+    }
+</style>
 <head>
     <title>Profile</title>
 </head>
@@ -18,16 +33,17 @@
 <jsp:include page="Header.jsp"></jsp:include>
 <h3>Id:<%=user.getId()%></h3>
 <h3>Username:<%=user.getUsername()%></h3>
-<h3>Password:<%=user.getPassword()%></h3>
+<div class="grid-container">
 <%int i = 0;
     while (user.getPosts().size()>i) {
 %>
 <div><h1><%=user.getPosts().get(i).getHead()%>
 </h1></div>
 <div><a href="post/<%=user.getPosts().get(i).getId()%>">More</a></div>
-</div>
 <%
     i++;}
 %>
+</div>
+
 </body>
 </html>

@@ -32,11 +32,9 @@
 <%
     if (session.getAttribute("username") != null) {
 %>
-<div align="center">
     <a href="PostCreate.jsp">
         <button class="btn btn-success">Create post</button>
     </a>
-</div>
 <%}%>
 <div class="grid-container">
 
