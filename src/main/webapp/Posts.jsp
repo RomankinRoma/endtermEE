@@ -28,6 +28,7 @@
     <title>Posts</title>
 </head>
 <body>
+<jsp:useBean id="postDao" class="kz.iitu.endtermEE.dao.PostDao"></jsp:useBean>
 <jsp:include page="Header.jsp"></jsp:include>
 <%
     if (session.getAttribute("username") != null) {
@@ -39,7 +40,7 @@
 <div class="grid-container">
 
     <%
-            PostDao postDao = new PostDao();
+            try{
             List<Post> posts = postDao.getAll();
             int i=0;
             while (posts.size()>i) {
@@ -49,7 +50,9 @@
     <div><a href="post/<%=posts.get(i).getId()%>">More</a></div>
 </div>
 <%
-        i++;}
+        i++;}}catch (SQLException throwables){
+                throwables.printStackTrace();
+        }
 %>
 </body>
 </html>

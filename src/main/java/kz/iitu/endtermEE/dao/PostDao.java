@@ -1,5 +1,6 @@
 package kz.iitu.endtermEE.dao;
 
+import kz.iitu.endtermEE.model.Comment;
 import kz.iitu.endtermEE.model.Post;
 
 import java.sql.Connection;
@@ -111,6 +112,46 @@ public class PostDao {
         System.out.println(query);
         preparedStatement.executeUpdate();
         return getById(post.getId());
+    }
+
+    public String create(Comment comment,int id){
+        String commentText = comment.getComment();
+        String username = comment.getUsername();
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            con = DBConnection.createConnection();
+            String query = "insert into comment(username,comment,post_id) values (?,?,?) RETURNING id";
+            preparedStatement = con.prepareStatement(query);
+            preparedStatement.setInt(3, id);
+            preparedStatement.setString(2, commentText);
+            preparedStatement.setString(1, username);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next())
+                return String.valueOf(resultSet.getInt("id"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "!SUCCESS";
+    }
+    public List<Comment> getAllByPost(int id) throws SQLException {
+        Connection con = DBConnection.createConnection();
+        String query = "select * from comment where comment.post_id="+id;
+        System.out.println(query);
+        PreparedStatement preparedStatement = con.prepareStatement(query);
+
+        ResultSet rs = preparedStatement.executeQuery();
+        List<Comment> comments = new ArrayList<>();
+        while (rs.next()) {
+            Comment comment = new Comment();
+            comment.setId(rs.getInt("id"));
+            comment.setComment(rs.getString("comment"));
+            comment.setUsername(rs.getString("username"));
+            comments.add(comment);
+        }
+        return comments;
     }
 }
 

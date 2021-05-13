@@ -6,4 +6,5 @@ kz\iitu\endtermEE\servlets\Logout.class
 kz\iitu\endtermEE\servlets\Posts.class
 kz\iitu\endtermEE\servlets\Login.class
 kz\iitu\endtermEE\servlets\Register.class
+kz\iitu\endtermEE\servlets\Comments.class
 kz\iitu\endtermEE\dao\UserDao.class

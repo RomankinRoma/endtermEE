@@ -26,20 +26,23 @@
 <head>
     <title>Profile</title>
 </head>
+<jsp:useBean id="user" class="kz.iitu.endtermEE.model.User"></jsp:useBean>
+<jsp:useBean id="postDao" class="kz.iitu.endtermEE.dao.PostDao"></jsp:useBean>
+
 <body>
-<% PostDao postDao=new PostDao();
-    User user = (User) session.getAttribute("user");
-    user.setPosts(postDao.getAllByUser(user.getId())); %>
+<%
+    user = (User) session.getAttribute("user");
+   user.setPosts(postDao.getAllByUser(user.getId())); %>
 <jsp:include page="Header.jsp"></jsp:include>
 <h3>Id:<%=user.getId()%></h3>
 <h3>Username:<%=user.getUsername()%></h3>
 <div class="grid-container">
-<%int i = 0;
+<% int i = 0;
     while (user.getPosts().size()>i) {
 %>
 <div><h1><%=user.getPosts().get(i).getHead()%>
 </h1></div>
-<div><a href="post/<%=user.getPosts().get(i).getId()%>">More</a></div>
+<div><a href="/post/<%=user.getPosts().get(i).getId()%>">More</a></div>
 <%
     i++;}
 %>

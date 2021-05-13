@@ -3,6 +3,7 @@ package kz.iitu.endtermEE.servlets;
 import com.sun.glass.ui.View;
 import kz.iitu.endtermEE.dao.PostDao;
 import kz.iitu.endtermEE.dao.UserDao;
+import kz.iitu.endtermEE.model.Comment;
 import kz.iitu.endtermEE.model.Post;
 import kz.iitu.endtermEE.model.User;
 
@@ -12,6 +13,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "Posts", value = "/post/*")
 public class Posts extends HttpServlet {
@@ -57,4 +59,6 @@ public class Posts extends HttpServlet {
             throwables.printStackTrace();
         }
     }
+
+
 }

@@ -13,6 +13,7 @@
     <title>Post</title>
 </head>
 <body>
+
 <jsp:include page="Header.jsp"></jsp:include>
 <form  name="form" action="post/" method="post" onsubmit="return validate()">
         <div style="width: 50%" class="input-group mb-3">
